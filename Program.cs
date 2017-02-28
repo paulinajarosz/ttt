@@ -10,6 +10,7 @@ namespace ttt
     {
         static void Main(string[] args)
         {
+            System.Console.WriteLine("hdshfvgsrh");
         }
     }
 }
