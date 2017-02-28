@@ -175,6 +175,7 @@ namespace wzorzecProjektowy
             else
                 throw new System.ArgumentException("Argument jest niepoprawny.");
             return this;
+        
         }
     }
 }
