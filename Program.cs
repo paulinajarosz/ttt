@@ -167,6 +167,7 @@ namespace wzorzecProjektowy
                 throw new System.ArgumentException("Lista pracowników nie zawiera pracowników.");
             return this;
         }
+    
 
         public Pracodawca AddPracownik(Pracownik _pracownik)
         {
