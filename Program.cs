@@ -11,168 +11,168 @@ namespace wzorzecProjektowy
     {
         static void Main(string[] args)
         {
-            Pracownik tester = new Pracownik();
-            tester.SetIDPracownik(453678635)
-                .SetImieNazwisko("Rafał Ściblak")
-                .SetNumerTelefonu(506190432)
-                .SetWiek(25)
-                .SetWynagrodzenie(5000);
+            Produkt masło = new Produkt();
+            masło.SetIDProdukt(4657458)
+                .SetNazwa("Dobre masło")
+                .SetNumerPartii(506190432)
+                .SetDataProdukcji(25)
+                .SetCena(3);
 
-            Pracodawca pracodawca = new Pracodawca();
-            pracodawca.AddPracownik(tester);
+            Fabryka mleczarnia = new Fabryka();
+            mleczarnia.AddProdukt(masło);
 
-            Console.WriteLine(pracodawca.GetListaPracownikow().ElementAt(0).GetImieNazwisko());
+            Console.WriteLine(mleczarnia.GetListaProduktow().ElementAt(0).GetNazwa());
             Console.ReadKey();
         }
     }
 
-    class Pracownik
+    class Produkt
     {
-        long IDPracownik;
-        string imieNazwisko;
-        int numerTelefonu;
-        byte wiek;
-        int wynagrodzenie;
+        long IDProduktu;
+        string nazwa;
+        int numerPartii;
+        int dataProdukcji;
+        int cena;
 
 
-        public Pracownik()
+        public Produkt()
         {
-            IDPracownik = 0;
-            imieNazwisko = "";
-            numerTelefonu = 0;
-            wiek = 0;
-            wynagrodzenie = 0;
+            IDProduktu = 0;
+            nazwa = "";
+            numerPartii = 0;
+            dataProdukcji = 0;
+            cena = 0;
         }
 
-        public Pracownik(long _IDPracownik, string _imieNazwisko, int _numerTelefonu, byte _wiek, int _wynagrodzenie)
+        public Produkt(long IdProduktu, string Nazwa, int NumerPartii, int DataProdukcji, int Cena)
         {
-            IDPracownik = _IDPracownik;
-            imieNazwisko = _imieNazwisko;
-            numerTelefonu = _numerTelefonu;
-            wiek = _wiek;
-            wynagrodzenie = _wynagrodzenie;
+            IDProduktu = IdProduktu;
+            nazwa = Nazwa;
+            numerPartii = NumerPartii;
+            dataProdukcji = DataProdukcji;
+            cena = Cena;
         }
 
         //Gettery
-        public long GetIDPracownik()
+        public long GetIDProduktu()
         {
-            return IDPracownik;
+            return IDProduktu;
         }
 
-        public string GetImieNazwisko()
+        public string GetNazwa()
         {
-            return imieNazwisko;
+            return nazwa;
         }
 
-        public int GetNumerTelefonu()
+        public int GetNumerPartiiu()
         {
-            return numerTelefonu;
+            return numerPartii;
         }
 
-        public byte GetWiek()
+        public int GetDataProdukcjik()
         {
-            return wiek;
+            return dataProdukcji;
         }
 
-        public int GetWynagrodzenie()
+        public int GetCena()
         {
-            return wynagrodzenie;
+            return cena;
         }
 
         //Settery
-        public Pracownik SetIDPracownik(long _IDPracownik)
+        public Produkt SetIDProdukt(long IdProduktu)
         {
-            if (_IDPracownik < 0)
+            if (IdProduktu < 0)
                 throw new System.ArgumentException("ID musi być większe od 0.");
             else
-                IDPracownik = _IDPracownik;
+                IDProduktu = IdProduktu;
             return this;
         }
 
-        public Pracownik SetImieNazwisko(string _imieNazwisko)
+        public Produkt SetNazwa(string Nazwa)
         {
-            if (_imieNazwisko.Length < 10)
-                throw new System.ArgumentException("Imię i nazwisko musi się składać z minimum 10 znaków.");
+            if (Nazwa.Length < 5)
+                throw new System.ArgumentException("Nazwa musi się składać z minimum 5 znaków.");
             else
-                imieNazwisko = _imieNazwisko;
+                nazwa = Nazwa;
             return this;
         }
 
-        public Pracownik SetNumerTelefonu(int _numerTelefonu)
+        public Produkt SetNumerPartii(int NumerPartii)
         {
-            numerTelefonu = _numerTelefonu;
+            numerPartii = NumerPartii;
             return this;
         }
 
-        public Pracownik SetWiek(byte _wiek)
+        public Produkt SetDataProdukcji(int DataProdukcji)
         {
-            if (_wiek < 0 && _wiek > 100)
-                throw new System.ArgumentException("Wiek musi być z przedziału od 0 do 100 lat.");
+            if (DataProdukcji < 2017) 
+                throw new System.ArgumentException("Data produkcji musi być większa lub równa od 2016.");
             else
-                wiek = _wiek;
+                dataProdukcji = DataProdukcji;
             return this;
         }
 
-        public Pracownik SetWynagrodzenie(int _wynagrodzenie)
+        public Produkt SetCena(int Cena)
         {
-            if (_wynagrodzenie < 2000)
-                throw new System.ArgumentException("Wynagrodzenie nie może być mniejsze od 2000 zł.");
+            if (Cena < 0)
+                throw new System.ArgumentException("Cena nie może być mniejsza od 0 zł.");
             else
-                wynagrodzenie = _wynagrodzenie;
+                cena = Cena;
             return this;
         }
     }
 
-    class Pracodawca
+    class Fabryka
     {
-        long IDPracodawca;
-        List<Pracownik> listaPracownikow;
+        long IDFabryki;
+        List<Produkt> listaProduktow;
 
-        public Pracodawca()
+        public Fabryka()
         {
-            IDPracodawca = 0;
-            listaPracownikow = new List<Pracownik>();
+            IDFabryki = 0;
+            listaProduktow = new List<Produkt>();
         }
 
-        public Pracodawca(long _IDPracodawca, List<Pracownik> _listaPracownikow)
+        public Fabryka(long IdFabryki, List<Produkt> ListaProduktow)
         {
-            IDPracodawca = _IDPracodawca;
-            listaPracownikow = _listaPracownikow;
+            IDFabryki = IdFabryki;
+            listaProduktow = ListaProduktow;
         }
 
         public long GetIDPracownik()
         {
-            return IDPracodawca;
+            return IDFabryki;
         }
 
-        public List<Pracownik> GetListaPracownikow()
+        public List<Produkt> GetListaProduktow()
         {
-            return listaPracownikow;
+            return listaProduktow;
         }
 
-        public Pracodawca SetIDPracodawca(long _IDPracodawca)
+        public Fabryka SetIDFabryki(long IdFabryka)
         {
-            if (_IDPracodawca < 0)
+            if (IdFabryka < 0)
                 throw new System.ArgumentException("ID musi być większe od 0.");
             else
-                IDPracodawca = _IDPracodawca;
+                IDFabryki = IdFabryka;
             return this;
         }
 
-        public Pracodawca SetListaPracownikow(List<Pracownik> _listaPracownikow)
+        public Fabryka SetListaProduktow(List<Produkt> ListaProduktow)
         {
-            if (_listaPracownikow != null)
-                listaPracownikow = _listaPracownikow;
+            if (ListaProduktow != null)
+                listaProduktow = ListaProduktow;
             else
-                throw new System.ArgumentException("Lista pracowników nie zawiera pracowników.");
+                throw new System.ArgumentException("Lista produktów nie zawiera produktów.");
             return this;
         }
     
 
-        public Pracodawca AddPracownik(Pracownik _pracownik)
+        public Fabryka AddProdukt(Produkt Produkt)
         {
-            if (_pracownik != null)
-                listaPracownikow.Add(_pracownik);
+            if (Produkt != null)
+                listaProduktow.Add(Produkt);
             else
                 throw new System.ArgumentException("Argument jest niepoprawny.");
             return this;
